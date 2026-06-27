@@ -18,6 +18,7 @@ const { class: className } = Astro.props;
           target={s.icon === "email" ? undefined : "_blank"}
           rel={s.icon === "email" ? undefined : "noopener"}
           aria-label={s.label}
+          data-email={s.icon === "email" ? s.href.replace("mailto:", "") : undefined}
         >
           <Icon name={s.icon} />
           <span class="socials__label">{s.label}</span>
@@ -26,6 +27,33 @@ const { class: className } = Astro.props;
     ))
   }
 </ul>
+
+<script>
+  // Progressive enhancement for the email link. A bare `mailto:` silently does
+  // nothing on machines with no registered mail handler (common on Windows /
+  // webmail users), so we also copy the address to the clipboard and flash
+  // "Copied" feedback. We don't preventDefault — anyone *with* a mail client
+  // still gets their compose window as well.
+  for (const link of document.querySelectorAll<HTMLAnchorElement>("a[data-email]")) {
+    link.addEventListener("click", async () => {
+      const email = link.dataset.email;
+      const label = link.querySelector<HTMLElement>(".socials__label");
+      if (!email || !label || !navigator.clipboard) return;
+      try {
+        await navigator.clipboard.writeText(email);
+        const original = label.textContent;
+        label.textContent = "Copied";
+        link.setAttribute("data-copied", "");
+        window.setTimeout(() => {
+          label.textContent = original;
+          link.removeAttribute("data-copied");
+        }, 1600);
+      } catch {
+        // Clipboard blocked (e.g. insecure context) — mailto still fires.
+      }
+    });
+  }
+</script>
 
 <style>
   .socials {
@@ -53,6 +81,11 @@ const { class: className } = Astro.props;
     color: var(--text);
     border-color: var(--border-strong);
     background: var(--bg-elevated);
+  }
+
+  .socials__link[data-copied] {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   .socials__link :global(svg) {
