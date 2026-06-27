@@ -1,5 +1,5 @@
 /* ============================================================
-   Orbital Charcoal — design system
+   Orbital Charcoal - design system
    Near-monochrome charcoal · single periwinkle accent ·
    Inter (prose) + Geist Mono (instrumentation)
    ============================================================ */
@@ -84,7 +84,7 @@ body {
 }
 
 /* ---------- signature: parallax signal lattice ----------
-   The only space/satellite nod — an abstract coordinate field rendered as
+   The only space/satellite nod - an abstract coordinate field rendered as
    fixed layers that drift at different rates on scroll (JS sets --py),
    giving depth. Densest behind the hero, dissolving downward.
    With JS off / reduced-motion, --py stays 0 → a clean static lattice. */
@@ -128,7 +128,7 @@ body {
   will-change: transform;
 }
 
-/* deep, coarse, accent-tinted grid — drifts fastest (feels far away) */
+/* deep, coarse, accent-tinted grid - drifts fastest (feels far away) */
 .backdrop__grid-far {
   background-image:
     linear-gradient(var(--grid-line-far) 1px, transparent 1px),
@@ -137,7 +137,7 @@ body {
   transform: translate3d(0, calc(var(--py) * -0.26px), 0);
 }
 
-/* fine foreground grid — drifts at a different, slower rate */
+/* fine foreground grid - drifts at a different, slower rate */
 .backdrop__grid {
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -146,7 +146,7 @@ body {
   transform: translate3d(0, calc(var(--py) * -0.12px), 0);
 }
 
-/* accent glow over the hero — rushes away as you scroll */
+/* accent glow over the hero - rushes away as you scroll */
 .backdrop__glow {
   position: absolute;
   inset: -25% -10% auto -10%;

@@ -1,6 +1,6 @@
 # davidrohweder.com
 
-Personal site for **David Rohweder** — Software Engineer at Iridium.
+Personal site for **David Rohweder** - Software Engineer at Iridium.
 Built with [Astro](https://astro.build), deployed to GitHub Pages on a custom domain.
 
 A single, fast, dark-only page: hero, about, experience, projects, skills,
@@ -9,10 +9,10 @@ reveal + nav scroll-spy), self-hosted variable fonts, and an optimized image.
 
 ## Stack
 
-- **Astro 5** — static output, component-based, HTML/CSS-first
+- **Astro 5** - static output, component-based, HTML/CSS-first
 - **Inter + Geist Mono** (`@fontsource-variable`, self-hosted & subset)
-- **@astrojs/sitemap** — sitemap + SEO
-- **sharp** — build-time image optimization (WebP)
+- **@astrojs/sitemap** - sitemap + SEO
+- **sharp** - build-time image optimization (WebP)
 
 ## Develop
 
@@ -24,7 +24,7 @@ npm run preview  # serve the production build
 ```
 
 All content lives in one typed file: [`src/data/profile.ts`](src/data/profile.ts).
-Edit it to update experience, projects, skills, etc. — no markup changes needed.
+Edit it to update experience, projects, skills, etc. - no markup changes needed.
 
 ## Project structure
 

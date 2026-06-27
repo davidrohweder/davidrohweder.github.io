@@ -67,9 +67,9 @@ export const profile = {
 
   // Hero / SEO description
   tagline:
-    "Builds reliable, well-tested systems end to end — from cloud infrastructure and CI/CD to the product people actually use.",
+    "Builds reliable, well-tested systems end to end, from cloud infrastructure and CI/CD to the product people actually use.",
 
-  // About — short prose + one light personal line
+  // About: short prose + one light personal line
   about: [
     "I’m a software engineer at Iridium, where I build automated test suites, CI/CD pipelines, and full-stack applications that operate over a global satellite network. I care about clean systems, fast feedback loops, and tools other engineers actually want to use.",
     "I’m AWS and Terraform certified and currently pursuing graduate studies in computer science at Georgia Tech.",
@@ -155,7 +155,7 @@ export const projects: ProjectItem[] = [
   },
   {
     name: "Parallel Shortest-Path Research",
-    blurb: "Parallelized Dijkstra and Bellman-Ford to 8–10× speedups on a supercomputer.",
+    blurb: "Parallelized Dijkstra and Bellman-Ford to 8-10× speedups on a supercomputer.",
     period: "2022",
     highlights: [
       "Led a team exploring parallelization of Dijkstra’s and the Bellman-Ford algorithms.",
@@ -217,7 +217,7 @@ export const skills: SkillGroup[] = [
 export const education: EducationItem[] = [
   {
     school: "Georgia Institute of Technology",
-    degree: "Graduate Studies · Computer Science",
+    degree: "M.S. in Computer Science",
     location: "Atlanta, GA",
     period: "In progress",
     status: "In progress",
@@ -238,13 +238,13 @@ export const education: EducationItem[] = [
 ];
 
 export const certifications: CredentialItem[] = [
-  { title: "AWS Certified Developer – Associate", issuer: "Amazon Web Services", year: "2023" },
+  { title: "AWS Certified Developer - Associate", issuer: "Amazon Web Services", year: "2023" },
   { title: "HashiCorp Certified: Terraform Associate", issuer: "HashiCorp", year: "2024" },
 ];
 
 export const awards: AwardItem[] = [
-  { title: "1st Place — RACC Web Design Challenge", detail: "Lead developer, winning team" },
-  { title: "SkillsUSA Pennsylvania — Computer Programming", detail: "2nd place 2018, 3rd place 2019" },
+  { title: "1st Place · RACC Web Design Challenge", detail: "Lead developer, winning team" },
+  { title: "SkillsUSA Pennsylvania · Computer Programming", detail: "2nd place 2018, 3rd place 2019" },
   {
     title: "Penn State Undergraduate Scholarship",
     detail: "Awarded for Talented Students",
