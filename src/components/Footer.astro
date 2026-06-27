@@ -10,9 +10,6 @@ const year = new Date().getFullYear();
   <div class="container footer__inner">
     <div class="footer__lead">
       <p class="footer__name">{profile.name}</p>
-      <p class="footer__note">
-        Designed &amp; built from scratch · Astro + a lot of care.
-      </p>
       <p class="footer__copy mono">© {year} · {profile.domain}</p>
     </div>
 
@@ -55,12 +52,6 @@ const year = new Date().getFullYear();
   .footer__name {
     font-weight: 600;
     letter-spacing: -0.01em;
-  }
-
-  .footer__note {
-    margin-top: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.9rem;
   }
 
   .footer__copy {

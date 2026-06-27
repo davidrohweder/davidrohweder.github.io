@@ -1,0 +1,132 @@
+---
+import { navItems } from "../data/profile";
+
+// Progress minimap: intro + the numbered sections + recognition.
+const railItems = [
+  { label: "Intro", href: "#top" },
+  ...navItems,
+  { label: "Recognition", href: "#recognition" },
+];
+---
+
+<nav class="rail" aria-label="Section progress">
+  <ul class="rail__list">
+    {
+      railItems.map((item) => (
+        <li class="rail__row">
+          <a class="rail__item" href={item.href} data-spy>
+            <span class="rail__label">{item.label}</span>
+            <span class="rail__tick" aria-hidden="true" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .rail {
+    position: fixed;
+    right: clamp(16px, 2vw, 30px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    padding: 14px;
+    border: 1px solid transparent;
+    border-radius: var(--r-md);
+    transition:
+      background var(--speed) var(--ease),
+      border-color var(--speed) var(--ease);
+  }
+
+  .rail:hover,
+  .rail:focus-within {
+    background: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
+    border-color: var(--border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .rail__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .rail__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-block: 2px;
+  }
+
+  .rail__tick {
+    display: block;
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text-faint);
+    opacity: 0.55;
+    flex-shrink: 0;
+    transition:
+      width var(--speed) var(--ease),
+      background var(--speed) var(--ease),
+      opacity var(--speed) var(--ease);
+  }
+
+  .rail__label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(6px);
+    pointer-events: none;
+    transition:
+      opacity var(--speed) var(--ease),
+      transform var(--speed) var(--ease),
+      color var(--speed) var(--ease);
+  }
+
+  /* reveal labels when the rail is hovered/focused */
+  .rail:hover .rail__label,
+  .rail:focus-within .rail__label {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /* hover affordance on a single row */
+  .rail__item:hover .rail__tick {
+    width: 26px;
+    background: var(--text-muted);
+    opacity: 1;
+  }
+
+  /* active section (set by scroll-spy) */
+  .rail__item[data-active] .rail__tick {
+    width: 30px;
+    background: var(--text);
+    opacity: 1;
+  }
+
+  .rail__item[data-active] .rail__label {
+    color: var(--text);
+  }
+
+  /* only show where there's gutter room beside the 1080px content column */
+  @media (max-width: 1219px) {
+    .rail {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rail__label {
+      transform: none;
+    }
+  }
+</style>

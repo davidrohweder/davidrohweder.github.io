@@ -65,9 +65,9 @@ export const profile = {
   url: "https://davidrohweder.com",
   resumePath: "/David-Rohweder-Resume.pdf",
 
-  // Hero
+  // Hero / SEO description
   tagline:
-    "Software engineer at Iridium building automated systems, CI/CD, and full-stack apps that run over the world’s largest commercial satellite network.",
+    "Builds reliable, well-tested systems end to end — from cloud infrastructure and CI/CD to the product people actually use.",
 
   // About — short prose + one light personal line
   about: [

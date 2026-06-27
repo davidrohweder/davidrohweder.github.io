@@ -14,7 +14,7 @@ import Icon from "./Icon.astro";
     <nav class="nav__links" aria-label="Section navigation">
       {
         navItems.map((item) => (
-          <a class="nav__link" href={item.href} data-nav-link>
+          <a class="nav__link" href={item.href} data-spy>
             {item.label}
           </a>
         ))

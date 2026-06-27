@@ -8,14 +8,15 @@ import SocialLinks from "./SocialLinks.astro";
   <div class="hero__inner container">
     <p class="hero__status" data-load style="--i: 0">
       <span class="hero__dot" aria-hidden="true"></span>
-      Software Engineer · {profile.company}
+      Software Engineer
     </p>
 
     <h1 class="hero__name" data-load style="--i: 1">{profile.name}</h1>
 
     <p class="hero__role" data-load style="--i: 2">
-      I build automated systems, CI/CD, and full-stack apps that run over the
-      world’s largest commercial <span class="hero__hl">satellite network</span>.
+      I’m a software engineer who likes building reliable, well-tested systems
+      <span class="hero__hl">end to end</span> — from cloud infrastructure and
+      CI/CD to the product people actually use.
     </p>
 
     <div class="hero__meta" data-load style="--i: 3">
@@ -37,6 +38,13 @@ import SocialLinks from "./SocialLinks.astro";
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    /* dramatic parallax fold: content lags the scroll, folds back from its top
+       edge, and dissolves as it leaves. --py is 0 without JS / under
+       reduced-motion, so this collapses to an inert identity transform. */
+    transform-origin: 50% 0%;
+    transform: perspective(900px) translate3d(0, calc(var(--py) * 0.3px), 0)
+      rotateX(calc(var(--py) * 0.08deg));
+    opacity: clamp(0, calc(1 - var(--py) / 600), 1);
   }
 
   .hero__status {
@@ -84,7 +92,7 @@ import SocialLinks from "./SocialLinks.astro";
 
   .hero__role {
     margin-top: 1.5rem;
-    max-width: 32ch;
+    max-width: 42ch;
     font-size: clamp(1.05rem, 2vw, 1.3rem);
     line-height: 1.45;
     color: var(--text-muted);
