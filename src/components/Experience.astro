@@ -1,0 +1,176 @@
+---
+import { experience } from "../data/profile";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="section reveal" id="experience" aria-labelledby="experience-title">
+  <div class="container">
+    <SectionHeading index="02" title="Experience" id="experience-title" />
+
+    <ol class="timeline">
+      {
+        experience.map((job) => (
+          <li class="timeline__item">
+            <div class="timeline__when mono">
+              <span>{job.start}</span>
+              <span class="timeline__dash">—</span>
+              <span>{job.end}</span>
+            </div>
+
+            <div class="timeline__content">
+              <h3 class="timeline__role">
+                {job.role}
+                <span class="timeline__at"> · </span>
+                {job.href ? (
+                  <a class="timeline__company link" href={job.href} target="_blank" rel="noopener">
+                    {job.company}
+                  </a>
+                ) : (
+                  <span class="timeline__company">{job.company}</span>
+                )}
+              </h3>
+              <p class="timeline__loc mono">{job.location}</p>
+
+              <ul class="timeline__points">
+                {job.highlights.map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+
+              <ul class="tag-list">
+                {job.stack.map((t) => (
+                  <li class="tag">{t}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .timeline__when {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    padding-top: 0.1rem;
+  }
+
+  .timeline__dash {
+    opacity: 0.6;
+  }
+
+  .timeline__content {
+    position: relative;
+    padding-left: 1.6rem;
+    padding-bottom: 2.75rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .timeline__item:last-child .timeline__content {
+    padding-bottom: 0;
+  }
+
+  .timeline__content::before {
+    content: "";
+    position: absolute;
+    left: -4.5px;
+    top: 0.45rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease);
+  }
+
+  .timeline__item:hover .timeline__content::before {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  .timeline__role {
+    font-size: 1.0625rem;
+    font-weight: 560;
+    letter-spacing: -0.01em;
+  }
+
+  .timeline__at {
+    color: var(--text-faint);
+  }
+
+  .timeline__company {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  a.timeline__company:hover {
+    color: var(--accent-hover);
+  }
+
+  .timeline__loc {
+    margin-top: 0.3rem;
+    font-size: 0.74rem;
+    color: var(--text-faint);
+  }
+
+  .timeline__points {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline__points li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 64ch;
+  }
+
+  .timeline__points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 1px;
+    background: var(--text-faint);
+  }
+
+  .tag-list {
+    margin-top: 1.1rem;
+  }
+
+  @media (min-width: 720px) {
+    .timeline__item {
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 1.75rem;
+    }
+    .timeline__when {
+      flex-direction: column;
+      gap: 0.1rem;
+      text-align: right;
+      padding-top: 0.4rem;
+    }
+    .timeline__dash {
+      display: none;
+    }
+  }
+</style>

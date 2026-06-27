@@ -1,0 +1,160 @@
+---
+import { education } from "../data/profile";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="section reveal" id="education" aria-labelledby="education-title">
+  <div class="container">
+    <SectionHeading index="05" title="Education" id="education-title" />
+
+    <ol class="edu">
+      {
+        education.map((e) => (
+          <li class="edu__item">
+            <div class="edu__when mono">{e.period}</div>
+            <div class="edu__content">
+              <h3 class="edu__school">
+                {e.school}
+                {e.status && <span class="edu__badge mono">{e.status}</span>}
+              </h3>
+              <p class="edu__degree">
+                {e.degree}
+                {e.detail && <span class="edu__detail mono"> · {e.detail}</span>}
+              </p>
+              <p class="edu__loc mono">{e.location}</p>
+              {e.highlights && (
+                <ul class="edu__points">
+                  {e.highlights.map((h) => (
+                    <li>{h}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .edu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edu__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .edu__when {
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    padding-top: 0.1rem;
+  }
+
+  .edu__content {
+    position: relative;
+    padding-left: 1.6rem;
+    padding-bottom: 2.5rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .edu__item:last-child .edu__content {
+    padding-bottom: 0;
+  }
+
+  .edu__content::before {
+    content: "";
+    position: absolute;
+    left: -4.5px;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    transition: border-color var(--speed) var(--ease), background var(--speed) var(--ease);
+  }
+
+  .edu__item:hover .edu__content::before {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  .edu__school {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    font-size: 1.0625rem;
+    font-weight: 560;
+    letter-spacing: -0.01em;
+  }
+
+  .edu__badge {
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .edu__degree {
+    margin-top: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .edu__detail {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
+
+  .edu__loc {
+    margin-top: 0.25rem;
+    font-size: 0.74rem;
+    color: var(--text-faint);
+  }
+
+  .edu__points {
+    margin-top: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .edu__points li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 64ch;
+  }
+
+  .edu__points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 1px;
+    background: var(--text-faint);
+  }
+
+  @media (min-width: 720px) {
+    .edu__item {
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 1.75rem;
+    }
+    .edu__when {
+      text-align: right;
+      padding-top: 0.4rem;
+    }
+  }
+</style>

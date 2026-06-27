@@ -1,0 +1,131 @@
+---
+import { profile, navItems } from "../data/profile";
+import SocialLinks from "./SocialLinks.astro";
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__lead">
+      <p class="footer__name">{profile.name}</p>
+      <p class="footer__note">
+        Designed &amp; built from scratch · Astro + a lot of care.
+      </p>
+      <p class="footer__copy mono">© {year} · {profile.domain}</p>
+    </div>
+
+    <div class="footer__right">
+      <nav class="footer__nav" aria-label="Sections">
+        <ul class="footer__navlist">
+          {
+            navItems.map((item) => (
+              <li>
+                <a class="footer__navlink" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <SocialLinks />
+      <a class="footer__top" href="#top">
+        Back to top
+        <Icon name="north-east" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  .footer__name {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .footer__note {
+    margin-top: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .footer__copy {
+    margin-top: 0.9rem;
+    font-size: 0.74rem;
+    color: var(--text-faint);
+  }
+
+  .footer__right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .footer__navlist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+  }
+
+  .footer__navlink {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    transition: color var(--speed) var(--ease);
+  }
+
+  .footer__navlink:hover {
+    color: var(--accent);
+  }
+
+  .footer__top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    transition: color var(--speed) var(--ease);
+  }
+
+  .footer__top :global(svg) {
+    width: 14px;
+    height: 14px;
+    transition: transform var(--speed) var(--ease);
+  }
+
+  .footer__top:hover {
+    color: var(--accent);
+  }
+
+  .footer__top:hover :global(svg) {
+    transform: translate(2px, -2px);
+  }
+
+  @media (min-width: 720px) {
+    .footer__inner {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+    .footer__right {
+      align-items: flex-end;
+    }
+  }
+</style>

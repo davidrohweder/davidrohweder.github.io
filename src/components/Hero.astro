@@ -1,0 +1,147 @@
+---
+import { profile } from "../data/profile";
+import Icon from "./Icon.astro";
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<section class="hero" id="top">
+  <div class="hero__inner container">
+    <p class="hero__status" data-load style="--i: 0">
+      <span class="hero__dot" aria-hidden="true"></span>
+      Software Engineer · {profile.company}
+    </p>
+
+    <h1 class="hero__name" data-load style="--i: 1">{profile.name}</h1>
+
+    <p class="hero__role" data-load style="--i: 2">
+      I build automated systems, CI/CD, and full-stack apps that run over the
+      world’s largest commercial <span class="hero__hl">satellite network</span>.
+    </p>
+
+    <div class="hero__meta" data-load style="--i: 3">
+      <span class="hero__loc mono">
+        <Icon name="location" />
+        {profile.location}
+      </span>
+      <SocialLinks class="hero__socials" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(72px, 16vh, 140px) var(--section-gap);
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem 0.35rem 0.7rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent-soft);
+    animation: pulse 2.4s var(--ease) infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(91, 140, 255, 0.45);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(91, 140, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(91, 140, 255, 0);
+    }
+  }
+
+  .hero__name {
+    font-size: clamp(2.6rem, 6vw, 4.25rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+  }
+
+  .hero__role {
+    margin-top: 1.5rem;
+    max-width: 32ch;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.45;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .hero__hl {
+    color: var(--text);
+  }
+
+  .hero__meta {
+    margin-top: 2.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .hero__loc {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    color: var(--text-faint);
+  }
+
+  .hero__loc :global(svg) {
+    width: 15px;
+    height: 15px;
+    color: var(--text-faint);
+  }
+
+  /* on-load fade-up, staggered */
+  [data-load] {
+    opacity: 0;
+    animation: load-rise 540ms var(--ease) forwards;
+    animation-delay: calc(var(--i) * 70ms + 80ms);
+  }
+
+  @keyframes load-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-load] {
+      opacity: 1;
+      animation: none;
+    }
+    .hero__dot {
+      animation: none;
+    }
+  }
+</style>

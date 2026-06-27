@@ -1,0 +1,304 @@
+/* ============================================================
+   Orbital Charcoal — design system
+   Near-monochrome charcoal · single periwinkle accent ·
+   Inter (prose) + Geist Mono (instrumentation)
+   ============================================================ */
+
+:root {
+  /* --- surfaces --- */
+  --bg: #0a0b0d;
+  --bg-elevated: #101216;
+  --bg-panel: #0e1014;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.13);
+  --grid-line: rgba(255, 255, 255, 0.025);
+
+  /* --- text --- */
+  --text: #edeef0;
+  --text-muted: #a4a8b0;
+  --text-faint: #868b94;
+
+  /* --- accent --- */
+  --accent: #5b8cff;
+  --accent-hover: #7ba2ff;
+  --accent-soft: rgba(91, 140, 255, 0.12);
+  --selection-bg: rgba(91, 140, 255, 0.26);
+
+  /* --- type --- */
+  --font-body: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", "JetBrains Mono",
+    monospace;
+
+  /* --- layout --- */
+  --measure-wide: 1080px;
+  --pad: clamp(20px, 5vw, 32px);
+  --section-gap: clamp(80px, 12vw, 120px);
+  --nav-h: 56px;
+
+  /* --- radii --- */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+
+  /* --- motion --- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --speed: 170ms;
+
+  color-scheme: dark;
+}
+
+/* ---------- reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 24px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  font-feature-settings: "cv05" 1, "ss03" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------- signature: fixed signal lattice ----------
+   The only space/satellite nod — an abstract coordinate field,
+   densest behind the hero, dissolving downward behind all content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, var(--accent-soft), transparent 60%),
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    64px 64px,
+    64px 64px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    #000 30%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    #000 30%,
+    transparent 75%
+  );
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ---------- typography ---------- */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- shared layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--measure-wide);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.prose {
+  max-width: 64ch;
+}
+
+.section {
+  padding-block: var(--section-gap);
+  border-top: 1px solid var(--border);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+/* ---------- instrumentation type (mono) ---------- */
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* section heading: numbered mono index + title */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.section-head__index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  padding-top: 0.35rem;
+}
+
+.section-head__title {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  font-weight: 580;
+  letter-spacing: -0.022em;
+}
+
+/* ---------- chips / tags ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.28rem 0.66rem;
+  white-space: nowrap;
+  transition: border-color var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ---------- inline links ---------- */
+.link {
+  color: var(--accent);
+  transition: color var(--speed) var(--ease);
+  text-underline-offset: 3px;
+}
+
+.link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal {
+  transition: opacity 480ms var(--ease), transform 480ms var(--ease);
+}
+
+/* Hidden state applies only when JS is active (progressive enhancement):
+   without JS the <html> never gets `.js`, so content stays visible. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- accessibility helpers ---------- */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: -100px;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  border-radius: var(--r-sm);
+  font-size: 0.875rem;
+  transition: top var(--speed) var(--ease);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

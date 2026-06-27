@@ -1,0 +1,70 @@
+---
+import { skills } from "../data/profile";
+import SectionHeading from "./SectionHeading.astro";
+---
+
+<section class="section reveal" id="skills" aria-labelledby="skills-title">
+  <div class="container">
+    <SectionHeading index="04" title="Skills & Tooling" id="skills-title" />
+
+    <dl class="skills">
+      {
+        skills.map((group) => (
+          <div class="skills__row">
+            <dt class="skills__label mono">{group.label}</dt>
+            <dd class="skills__items">
+              <ul class="tag-list">
+                {group.items.map((item) => (
+                  <li class="tag">{item}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .skills {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skills__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .skills__row:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .skills__row:last-child {
+    padding-bottom: 0;
+  }
+
+  .skills__label {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding-top: 0.35rem;
+  }
+
+  .skills__items {
+    margin: 0;
+  }
+
+  @media (min-width: 720px) {
+    .skills__row {
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }
+</style>

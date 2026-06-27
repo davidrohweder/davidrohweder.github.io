@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import { profile } from "../data/profile";
+import SectionHeading from "./SectionHeading.astro";
+import headshot from "../assets/profile.jpg";
+---
+
+<section class="section reveal" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <SectionHeading index="01" title="About" id="about-title" />
+
+    <div class="about">
+      <div class="about__body prose">
+        {profile.about.map((para) => <p>{para}</p>)}
+        <p class="about__note">{profile.personalNote}</p>
+      </div>
+
+      <figure class="about__figure">
+        <Image
+          src={headshot}
+          alt={`Portrait of ${profile.name}`}
+          width={320}
+          height={320}
+          quality={90}
+          loading="lazy"
+          class="about__photo"
+        />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+
+  .about__body p {
+    color: var(--text-muted);
+    margin-bottom: 1.1rem;
+  }
+
+  .about__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about__note {
+    color: var(--text-faint) !important;
+    font-size: 0.95rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1.6rem;
+  }
+
+  .about__figure {
+    margin: 0;
+    justify-self: start;
+  }
+
+  .about__photo {
+    width: clamp(120px, 30vw, 168px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border-strong);
+    filter: grayscale(0.18) contrast(1.02);
+    transition: filter var(--speed) var(--ease);
+  }
+
+  .about__photo:hover {
+    filter: grayscale(0) contrast(1);
+  }
+
+  @media (min-width: 720px) {
+    .about {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .about__figure {
+      order: 2;
+      justify-self: end;
+    }
+  }
+</style>
