@@ -130,6 +130,19 @@ export const experience: ExperienceItem[] = [
 
 export const projects: ProjectItem[] = [
   {
+    name: "HardwareRanked",
+    blurb: "Live marketplace and community for ranking handheld gaming devices.",
+    period: "Since 2025",
+    context: "hardwareranked.com",
+    highlights: [
+      "Built a Shopify Hydrogen storefront on Oxygen that proxies a fleet of FastAPI microservices for ratings, comments, benchmarks, and social profiles.",
+      "Designed an event-driven backend on AWS with Postgres and DynamoDB, SQS fan-out for notifications, and Redis/Celery jobs that auto-discover new devices.",
+      "Provisioned the whole system with Terraform: ECS on EC2 behind an ALB and WAF, secrets in Secrets Manager, and GitHub Actions OIDC deploys.",
+    ],
+    stack: ["Shopify Hydrogen", "React", "FastAPI", "AWS", "PostgreSQL", "DynamoDB", "Terraform"],
+    links: [{ label: "Visit site", href: "https://hardwareranked.com" }],
+  },
+  {
     name: "InclusiScore",
     blurb: "Credit-scoring backend that reached 96% prediction accuracy.",
     period: "2023",
